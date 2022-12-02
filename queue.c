@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include "queue.h"
 #include "list.h"
+#include <string.h>
 
+#define SIZE 20
 
 Queue *queue_create(void)
 {
@@ -22,12 +24,9 @@ void queue_destroy(Queue *q)
 
 void queue_enqueue(Queue *q, const char *value)
 {
-    if (q->list->head.prev == NULL){
-        list_insert(list_first(q->list), value);
-    }
-    else{
-        list_insert(list_end(q->list), value);
-    }
+    list_insert(list_end(q->list), value);
+}
+  
    
    
    
@@ -53,7 +52,7 @@ void queue_enqueue(Queue *q, const char *value)
     //     list_insert(list_end(q->list), value);
     // }
 
-}
+
 
 
 char *queue_dequeue(Queue *q)
@@ -61,9 +60,10 @@ char *queue_dequeue(Queue *q)
     // q->list->head.next = q->list->head.next->next;
     // q->list->head.next->prev = &q->list->head;
     
-    char *result;
+    char *result; 
+    result = malloc(sizeof(char*));
     ListPos firstpos = list_first(q->list);
-    result = list_inspect(firstpos);
+    strncpy(result, list_inspect(firstpos), SIZE);
     list_remove(firstpos);
 
     return result;
@@ -74,6 +74,7 @@ bool queue_is_empty(const Queue *q)
 
     return list_is_empty(q->list);
 }
+
 
 
 
