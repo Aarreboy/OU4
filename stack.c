@@ -8,7 +8,7 @@
  *                  
  * @author           Aaron Myhrberg (ens21amg)
  * @defgroup         stack.c
- * @since            2022-11-30
+ * @since            2022-12-04
  */
 
 #include <stdio.h>
@@ -23,7 +23,7 @@ Stack *stack_create(void)
     Stack *p = malloc(sizeof(Stack));
     p->size = 0;
     p->capacity = 1; 
-    p->data = malloc(p->capacity * sizeof(double));
+    p->data = malloc(sizeof(double));
 
     return p;
 }
@@ -39,7 +39,8 @@ void stack_destroy(Stack *s)
 void stack_push(Stack *s, double value)
 {
     if (s->size == s->capacity){
-        s->data = realloc(s->data, s->capacity * 2);
+        s->data = realloc(s->data, s->capacity * sizeof(double) * 2);
+        s->capacity *= 2;
     }
     s->data[s->size] = value;
     s->size++;
