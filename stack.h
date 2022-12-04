@@ -8,7 +8,7 @@
  *                  
  * @author           Aaron Myhrberg (ens21amg)
  * @defgroup         stack.h
- * @since            2022-11-30
+ * @since            2022-12-04
  */
 
 #ifndef STACK_H
@@ -23,7 +23,6 @@ typedef struct stack
     double *data;
 } Stack;
 
-// Create an empty stack.
 /**
  * @brief            Creates an empty stack
  * 
@@ -31,15 +30,13 @@ typedef struct stack
 */
 Stack *stack_create(void);
 
-// Destroy the stack.
 /**
- * @brief            Deallocates the stack.
+ * @brief            Destroys/Deallocates the stack.
  * 
  * @param s          A stack. 
 */
 void stack_destroy(Stack *s);
 
-// Push a value onto the stack.
 /**
  * @brief            Push a value atop of the stack
  * 
@@ -48,18 +45,16 @@ void stack_destroy(Stack *s);
 */
 void stack_push(Stack *s, double value);
 
-// Pop the value at the top of the stack.
 /**
  * @brief            Reads the value at the top of the stack then removes it
- *                   from the stack. This function is
- *                   undefined for an empty stack.
+ *                   from the stack. This function is undefined for an empty
+ *                   stack.
  * 
  * @param s          A stack.
  * @return           Returns the value of the first item in the stack. 
 */
 double stack_pop(Stack *s);
 
-// Check if the stack is empty.
 /**
  * @brief            Check if the stack is empty
  * 
