@@ -1,15 +1,24 @@
+/**
+ * Programmering i C
+ * Fall 22
+ * OU4
+ *
+ * @file             stack.h
+ * @brief            Declares functions for a stack.
+ *                  
+ * @author           Aaron Myhrberg (ens21amg)
+ * @defgroup         stack.h
+ * @since            2022-11-30
+ */
+
 #ifndef STACK_H
 #define STACK_H
-
 #include <stdbool.h>
 
 // The type for a stack.
 typedef struct stack
 {
-    //capacity = hur mycket arrayen kan hålla
     int capacity;
-
-    //size = hur mycket arrayen har i sig för tillfället.
     int size;
     double *data;
 } Stack;
@@ -42,7 +51,8 @@ void stack_push(Stack *s, double value);
 // Pop the value at the top of the stack.
 /**
  * @brief            Reads the value at the top of the stack then removes it
- *                   from the stack. "If stack is not empty"
+ *                   from the stack. This function is
+ *                   undefined for an empty stack.
  * 
  * @param s          A stack.
  * @return           Returns the value of the first item in the stack. 
