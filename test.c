@@ -1,38 +1,23 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "queue.h"
+#include "stack.h"
 
 int main(void)
 {
-    // Create an empty queue.
-    Queue *q = queue_create();
+    // Create an empty stack.
+    Stack *s = stack_create();
 
-    // Add the values A, B, ..., Z to the queue.
-    char str[] = "A";
-    for (char ch = 'A'; ch <= 'Z'; ch++) {
-        str[0] = ch;
-        queue_enqueue(q, str);
+    // Push some values.
+    for (int i = 0; i < 10; i++) {
+        stack_push(s, i);
     }
 
-    // Verify the values in the queue.
-    bool ok = true;
-    for (char ch = 'A'; ch <= 'Z'; ch++) {
-        str[0] = ch;
-        char *str2 = queue_dequeue(q);
-        if (strcmp(str, str2) != 0) {
-            ok = false;
-        }
-        free(str2);
+    // Pop and print.
+    while (!stack_is_empty(s)) {
+        printf("%8.2lf\n", stack_pop(s));
     }
-    if (!queue_is_empty(q)) {
-        ok = false;
-    }
-    printf("Test the functioning of the queue ... %s\n", ok ? "PASS" : "FAIL");
 
     // Clean up.
-    queue_destroy(q);
+    stack_destroy(s);
 
     return 0;
 }
